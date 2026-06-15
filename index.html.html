@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osama Abu Jasser | Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --green:#16C47F;--green-glow:rgba(22,196,127,0.2);--green-dim:rgba(22,196,127,0.08);
+  --teal:#0D9E68;--bg:#060E09;--card:rgba(255,255,255,0.032);--card-hover:rgba(255,255,255,0.058);
+  --border:rgba(255,255,255,0.07);--border-green:rgba(22,196,127,0.28);
+  --text:#E6F4EC;--text-muted:rgba(230,244,236,0.42);--mono:'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* BG */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(22,196,127,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(22,196,127,0.025) 1px,transparent 1px);
+  background-size:72px 72px}
+.orb{position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0}
+.orb1{width:700px;height:700px;background:rgba(22,196,127,0.065);top:-250px;right:-200px}
+.orb2{width:500px;height:500px;background:rgba(10,120,70,0.04);bottom:5%;left:-150px}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 5rem;
+  border-bottom:1px solid var(--border);background:rgba(6,14,9,0.88);
+  backdrop-filter:blur(24px);position:sticky;top:0;z-index:100}
+.logo{font-family:var(--mono);font-size:.95rem;font-weight:600;display:flex;align-items:center}
+.logo .br{color:var(--green);opacity:.7}.logo .nm{color:var(--green);margin:0 1px}
+.nav-right{display:flex;align-items:center;gap:2rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;font-size:.82rem;color:var(--text-muted);transition:color .18s;font-weight:500}
+.nav-links a:hover{color:var(--green)}
+.lang-btn{font-family:var(--mono);font-size:.73rem;font-weight:600;color:var(--green);
+  border:1px solid var(--border-green);background:var(--green-dim);
+  padding:.32rem .9rem;border-radius:6px;cursor:pointer;transition:all .2s;min-width:44px}
+.lang-btn:hover{background:var(--green-glow);border-color:var(--green)}
+
+/* HERO — direction-neutral flex layout */
+.hero{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  gap:4rem;
+  padding:7rem 5rem 6rem;
+  max-width:1200px;margin:0 auto;position:relative;z-index:1;
+  width:100%
+}
+.hero-text{flex:1;min-width:0}
+.hero-card-wrap{width:380px;flex-shrink:0}
+
+/* RTL: text left card right → in RTL that means text on right, card on left */
+/* flex-direction:row always keeps DOM order: text first, card second.
+   In RTL the browser reverses visual order automatically via dir=rtl */
+
+.badge{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);font-size:.7rem;
+  font-weight:500;color:var(--green);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:1.8rem;padding:.38rem 1rem;border:1px solid var(--border-green);
+  border-radius:4px;background:var(--green-dim)}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+
+h1{font-size:3.4rem;font-weight:900;line-height:1.1;color:var(--text);margin-bottom:1.2rem;letter-spacing:-1.5px}
+h1 .accent{color:var(--green);text-shadow:0 0 50px rgba(22,196,127,0.35)}
+h1 .sub-h{display:block;font-size:1.4rem;font-weight:400;color:var(--text-muted);letter-spacing:-.2px;margin-top:.35rem;font-family:var(--mono)}
+
+.hero-sub{font-size:.94rem;color:var(--text-muted);line-height:2;margin-bottom:2.5rem;max-width:480px}
+
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap}
+.btn-primary{background:var(--green);color:#03100a;padding:.72rem 1.8rem;border-radius:8px;
+  text-decoration:none;font-weight:700;font-size:.88rem;transition:all .22s;
+  box-shadow:0 0 30px rgba(22,196,127,0.28);white-space:nowrap}
+.btn-primary:hover{background:#1fdf90;box-shadow:0 0 50px rgba(22,196,127,0.5);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--border);color:var(--text-muted);padding:.72rem 1.8rem;
+  border-radius:8px;text-decoration:none;font-weight:500;font-size:.88rem;
+  transition:all .22s;background:var(--card);white-space:nowrap}
+.btn-ghost:hover{border-color:var(--border-green);color:var(--green);background:var(--green-dim)}
+
+/* PROFILE CARD */
+.profile-card{background:var(--card);border:1px solid var(--border);border-radius:22px;
+  padding:1.85rem;position:relative;overflow:hidden;backdrop-filter:blur(12px);width:100%}
+.profile-card::before{content:'';position:absolute;top:-80px;inset-inline-start:-80px;
+  width:220px;height:220px;background:radial-gradient(circle,rgba(22,196,127,0.12) 0%,transparent 70%);pointer-events:none}
+.profile-card::after{content:'';position:absolute;bottom:-70px;inset-inline-end:-70px;
+  width:180px;height:180px;background:radial-gradient(circle,rgba(22,196,127,0.06) 0%,transparent 70%);pointer-events:none}
+
+.avatar-wrap{position:relative;z-index:1;margin-bottom:1.1rem;display:inline-block}
+.avatar-img{width:70px;height:70px;border-radius:16px;object-fit:cover;
+  border:2px solid var(--border-green);
+  box-shadow:0 0 0 4px rgba(22,196,127,0.08),0 8px 28px rgba(0,0,0,0.5);display:block}
+.avatar-fallback{width:70px;height:70px;border-radius:16px;
+  background:linear-gradient(135deg,var(--green) 0%,var(--teal) 100%);
+  display:none;align-items:center;justify-content:center;
+  font-size:1.35rem;font-weight:900;color:#020a06;
+  border:2px solid var(--border-green);box-shadow:0 0 0 4px rgba(22,196,127,0.08),0 8px 28px rgba(22,196,127,0.25)}
+.avatar-status{position:absolute;bottom:-3px;inset-inline-end:-3px;width:18px;height:18px;
+  border-radius:50%;background:var(--green);border:3px solid var(--bg)}
+
+.card-name{font-weight:700;font-size:1rem;margin-bottom:.18rem;color:var(--text)}
+.card-role{font-size:.76rem;color:var(--text-muted);margin-bottom:1.1rem;font-family:var(--mono)}
+.card-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.3rem}
+.tag{background:rgba(22,196,127,0.07);color:var(--green);font-size:.69rem;
+  padding:.2rem .55rem;border-radius:5px;font-family:var(--mono);border:1px solid rgba(22,196,127,0.13)}
+.card-divider{border:none;border-top:1px solid var(--border);margin:0 0 1.2rem}
+.card-stats{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.stat{background:rgba(255,255,255,0.025);border:1px solid var(--border);
+  border-radius:10px;padding:.75rem;text-align:center}
+.stat-n{font-size:1.4rem;font-weight:900;color:var(--green);font-family:var(--mono);
+  text-shadow:0 0 18px rgba(22,196,127,0.3)}
+.stat-l{font-size:.67rem;color:var(--text-muted);margin-top:.08rem}
+
+/* SECTION */
+.section-wrap{padding:5rem 5rem;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.divider{border:none;border-top:1px solid var(--border);margin:0;position:relative;z-index:1}
+.sec-eye{font-family:var(--mono);font-size:.67rem;font-weight:600;color:var(--green);
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+.sec-title{font-size:1.85rem;font-weight:800;margin-bottom:2.6rem;color:var(--text);letter-spacing:-.5px}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:1.3rem;transition:border-color .2s,background .2s}
+.skill-cat:hover{border-color:var(--border-green);background:var(--card-hover)}
+.skill-cat-label{font-size:.67rem;font-weight:700;color:var(--text-muted);margin-bottom:.85rem;
+  display:flex;align-items:center;gap:.42rem;text-transform:uppercase;letter-spacing:.1em;font-family:var(--mono)}
+.skill-cat-label i{font-size:14px;color:var(--green)}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.3rem}
+.pill{background:rgba(22,196,127,0.06);color:var(--green);font-size:.71rem;
+  padding:.22rem .56rem;border-radius:5px;font-family:var(--mono);font-weight:500;
+  border:1px solid rgba(22,196,127,0.12);transition:all .15s}
+.pill:hover{background:rgba(22,196,127,0.14);border-color:rgba(22,196,127,0.32)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.1rem}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:1.7rem;transition:all .25s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(22,196,127,0.05) 0%,transparent 55%);
+  opacity:0;transition:opacity .25s}
+.proj-card:hover{border-color:var(--border-green);transform:translateY(-4px);
+  box-shadow:0 24px 64px rgba(0,0,0,0.45)}
+.proj-card:hover::before{opacity:1}
+.proj-num{font-family:var(--mono);font-size:.63rem;color:var(--green);opacity:.4;
+  margin-bottom:.75rem;font-weight:600;letter-spacing:.12em}
+.proj-icon{width:42px;height:42px;border-radius:11px;background:rgba(22,196,127,0.09);
+  border:1px solid rgba(22,196,127,0.18);display:flex;align-items:center;
+  justify-content:center;margin-bottom:1rem}
+.proj-icon i{font-size:21px;color:var(--green)}
+.proj-name{font-weight:700;font-size:.98rem;margin-bottom:.42rem;color:var(--text)}
+.proj-desc{font-size:.82rem;color:var(--text-muted);line-height:1.78;margin-bottom:1rem}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.3rem}
+.proj-stack span{background:rgba(255,255,255,0.03);color:var(--text-muted);font-size:.68rem;
+  padding:.17rem .46rem;border-radius:4px;font-family:var(--mono);border:1px solid var(--border)}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:.8rem}
+.svc-item{display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1.1rem;
+  background:var(--card);border:1px solid var(--border);border-radius:12px;transition:all .2s}
+.svc-item:hover{border-color:var(--border-green);background:var(--card-hover)}
+.svc-icon{width:34px;height:34px;flex-shrink:0;border-radius:9px;background:rgba(22,196,127,0.09);
+  border:1px solid rgba(22,196,127,0.18);display:flex;align-items:center;justify-content:center}
+.svc-icon i{font-size:17px;color:var(--green)}
+.svc-text{font-size:.85rem;color:var(--text-muted);line-height:1.55;padding-top:.2rem}
+
+/* CONTACT */
+.contact-box{background:linear-gradient(135deg,rgba(22,196,127,0.07) 0%,rgba(6,14,9,0) 55%);
+  border:1px solid var(--border-green);border-radius:24px;padding:3.5rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;
+  position:relative;overflow:hidden}
+.contact-box::before{content:'';position:absolute;top:-120px;inset-inline-start:-120px;
+  width:350px;height:350px;
+  background:radial-gradient(circle,rgba(22,196,127,0.09) 0%,transparent 70%);pointer-events:none}
+.contact-title{font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:.75rem;
+  letter-spacing:-.5px;position:relative;z-index:1}
+.contact-sub{font-size:.88rem;color:var(--text-muted);line-height:1.85;position:relative;z-index:1}
+.contact-links{display:flex;flex-direction:column;gap:.65rem;position:relative;z-index:1}
+.contact-link{display:flex;align-items:center;gap:.78rem;color:var(--text-muted);
+  text-decoration:none;font-size:.86rem;padding:.65rem .95rem;
+  background:var(--card);border:1px solid var(--border);border-radius:10px;transition:all .2s}
+.contact-link:hover{border-color:var(--border-green);color:var(--green);background:var(--green-dim)}
+.contact-link i{font-size:17px;color:var(--green);opacity:.75;flex-shrink:0}
+
+footer{text-align:center;padding:1.8rem;font-size:.74rem;color:var(--text-muted);
+  border-top:1px solid var(--border);font-family:var(--mono);position:relative;z-index:1}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:1rem 1.5rem}.nav-links{display:none}
+  .hero{flex-direction:column;padding:3.5rem 1.5rem;gap:2rem}
+  .hero-card-wrap{width:100%}
+  h1{font-size:2.4rem}
+  .section-wrap{padding:3rem 1.5rem}
+  .contact-box{grid-template-columns:1fr;padding:2rem;gap:1.8rem}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="br">&lt;</span><span class="nm" id="logo-name">أسامة</span><span class="br">/&gt;</span>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#skills"   data-key="nav_skills">المهارات</a></li>
+      <li><a href="#projects" data-key="nav_projects">المشاريع</a></li>
+      <li><a href="#services" data-key="nav_services">الخدمات</a></li>
+      <li><a href="#contact"  data-key="nav_contact">تواصل</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <!-- TEXT (first in DOM = right in RTL, left in LTR) -->
+  <div class="hero-text">
+    <div class="badge reveal">
+      <span class="dot"></span>
+      <span data-key="available">متاح للعمل الآن</span>
+    </div>
+    <h1 class="reveal">
+      <span id="h1-line1" data-key="h1_line1">مطوّر</span> <span class="accent">Full Stack</span>
+      <span class="sub-h" data-key="h1_line2">من غزة، فلسطين 🇵🇸</span>
+    </h1>
+    <p class="hero-sub reveal" data-key="hero_sub">
+      أبني تطبيقات ويب حديثة وقابلة للتوسع — من الواجهة الأمامية حتى قاعدة البيانات. أعمل ضمن فريق متكامل يضمن تسليم منتج عالي الجودة في الوقت المحدد.
+    </p>
+    <div class="hero-btns reveal">
+      <a href="#projects" class="btn-primary" data-key="btn_work">اكتشف أعمالي</a>
+      <a href="#contact"  class="btn-ghost"   data-key="btn_contact">تواصل معي</a>
+    </div>
+  </div>
+
+  <!-- CARD (second in DOM = left in RTL, right in LTR) -->
+  <div class="hero-card-wrap">
+    <div class="profile-card reveal">
+      <div class="avatar-wrap">
+        <img class="avatar-img" id="avatar-img"
+          src="image/osama.jpg"
+          onerror="this.style.display='none';document.getElementById('avatar-fallback').style.display='flex'"
+          alt="Osama Abu Jasser">
+        <div class="avatar-fallback" id="avatar-fallback">OJ</div>
+        <div class="avatar-status"></div>
+      </div>
+      <div class="card-name" data-key="card_name">أسامة أبو جاسر</div>
+      <div class="card-role">Full Stack Developer · Vue.js + Laravel</div>
+      <div class="card-tags">
+        <span class="tag">Vue.js</span><span class="tag">Laravel</span>
+        <span class="tag">MySQL</span><span class="tag">REST API</span><span class="tag">Docker</span>
+      </div>
+      <hr class="card-divider">
+      <div class="card-stats">
+        <div class="stat"><div class="stat-n">+3</div><div class="stat-l" data-key="stat_exp">سنوات خبرة</div></div>
+        <div class="stat"><div class="stat-n">+20</div><div class="stat-l" data-key="stat_proj">مشروع منجز</div></div>
+        <div class="stat"><div class="stat-n">100%</div><div class="stat-l" data-key="stat_sat">رضا العملاء</div></div>
+        <div class="stat"><div class="stat-n">∞</div><div class="stat-l" data-key="stat_pass">شغف بالكود</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills" class="section-wrap">
+  <span class="sec-eye reveal" data-key="eye_skills">ما أعمل به</span>
+  <div class="sec-title reveal" data-key="title_skills">المهارات التقنية</div>
+  <div class="skills-grid">
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label"><i class="ti ti-layout"></i><span data-key="sk_front">الواجهة الأمامية</span></div>
+      <div class="skill-pills"><span class="pill">Vue.js</span><span class="pill">Vuex</span><span class="pill">Vue Router</span><span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">JavaScript</span></div>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label"><i class="ti ti-server"></i><span data-key="sk_back">الخادم والباك اند</span></div>
+      <div class="skill-pills"><span class="pill">Laravel</span><span class="pill">PHP</span><span class="pill">REST API</span><span class="pill">Eloquent ORM</span></div>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label"><i class="ti ti-database"></i><span data-key="sk_db">قواعد البيانات والأدوات</span></div>
+      <div class="skill-pills"><span class="pill">MySQL</span><span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">Postman</span><span class="pill">Docker</span></div>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-label"><i class="ti ti-settings"></i><span data-key="sk_meth">منهجيات العمل</span></div>
+      <div class="skill-pills"><span class="pill">Agile</span><span class="pill">Scrum</span><span class="pill">UI/UX</span><span class="pill">Responsive Design</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects" class="section-wrap">
+  <span class="sec-eye reveal" data-key="eye_proj">الأعمال</span>
+  <div class="sec-title reveal" data-key="title_proj">المشاريع المنجزة</div>
+  <div class="projects-grid">
+    <div class="proj-card reveal">
+      <div class="proj-num">01</div>
+      <div class="proj-icon"><i class="ti ti-shopping-cart"></i></div>
+      <div class="proj-name" data-key="p1n">منصة تجارة إلكترونية</div>
+      <div class="proj-desc" data-key="p1d">متجر إلكتروني متكامل يشمل إدارة المنتجات، سلة التسوق، تتبع الطلبات، ولوحة تحكم للمشرف مع نظام مصادقة آمن وتكامل مع بوابة الدفع.</div>
+      <div class="proj-stack"><span>Vue.js</span><span>Laravel</span><span>MySQL</span><span>REST API</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-num">02</div>
+      <div class="proj-icon"><i class="ti ti-checklist"></i></div>
+      <div class="proj-name" data-key="p2n">نظام إدارة المهام</div>
+      <div class="proj-desc" data-key="p2d">تطبيق إنتاجية للفرق يتيح تعيين المهام في الوقت الفعلي، تتبع التقدم، التحكم في الصلاحيات، ولوحة تقارير لمديري الفريق.</div>
+      <div class="proj-stack"><span>Vue.js</span><span>Laravel</span><span>MySQL</span><span>Pusher</span></div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-num">03</div>
+      <div class="proj-icon"><i class="ti ti-school"></i></div>
+      <div class="proj-name" data-key="p3n">بوابة إدارة مدرسية</div>
+      <div class="proj-desc" data-key="p3d">نظام إداري شامل يغطي سجلات الطلاب، الحضور والغياب، الدرجات، والتواصل مع أولياء الأمور — مصمم ليكون سهل الاستخدام.</div>
+      <div class="proj-stack"><span>Vue.js</span><span>Laravel</span><span>MySQL</span><span>PDF Export</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="services" class="section-wrap">
+  <span class="sec-eye reveal" data-key="eye_svc">ما أقدمه</span>
+  <div class="sec-title reveal" data-key="title_svc">الخدمات</div>
+  <div class="services-grid">
+    <div class="svc-item reveal"><div class="svc-icon"><i class="ti ti-layers-intersect"></i></div><div class="svc-text" data-key="svc1">تطوير تطبيقات ويب متكاملة فول ستاك</div></div>
+    <div class="svc-item reveal"><div class="svc-icon"><i class="ti ti-api"></i></div><div class="svc-text" data-key="svc2">تصميم وتطوير REST API وربطها</div></div>
+    <div class="svc-item reveal"><div class="svc-icon"><i class="ti ti-device-mobile"></i></div><div class="svc-text" data-key="svc3">واجهات مستخدم متجاوبة وملائمة للجوال</div></div>
+    <div class="svc-item reveal"><div class="svc-icon"><i class="ti ti-database"></i></div><div class="svc-text" data-key="svc4">تصميم قواعد البيانات وتحسينها</div></div>
+    <div class="svc-item reveal"><div class="svc-icon"><i class="ti ti-shopping-bag"></i></div><div class="svc-text" data-key="svc5">المتاجر الإلكترونية وأنظمة الدفع</div></div>
+    <div class="svc-item reveal"><div class="svc-icon"><i class="ti ti-layout-dashboard"></i></div><div class="svc-text" data-key="svc6">لوحات التحكم وأنظمة CMS</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact" class="section-wrap">
+  <div class="contact-box reveal">
+    <div>
+      <div class="contact-title" data-key="ct_title">هل لديك مشروع في ذهنك؟</div>
+      <div class="contact-sub" data-key="ct_sub">أنا وفريقي جاهزون للبدء. نغطي دورة المشروع كاملاً — من التصميم حتى النشر — ونسلّم منتجاً متكاملاً بكفاءة وجودة عالية.</div>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:oabujasser@gmail.com" class="contact-link"><i class="ti ti-mail"></i> oabujasser@gmail.com</a>
+      <a href="https://github.com/osamakhjasser" class="contact-link" target="_blank"><i class="ti ti-brand-github"></i> github.com/osamakhjasser</a>
+      <a href="https://www.linkedin.com/in/osama-abu-jasser-54a1a1260" class="contact-link" target="_blank"><i class="ti ti-brand-linkedin"></i> linkedin.com/in/osama-abu-jasser</a>
+      <a href="#" class="contact-link"><i class="ti ti-map-pin"></i><span data-key="location">غزة، فلسطين 🇵🇸</span></a>
+    </div>
+  </div>
+</section>
+
+<footer><span data-key="footer">صُنع بـ ♥ في غزة، فلسطين · أسامة أبو جاسر © 2025</span></footer>
+
+<script>
+// ── TRANSLATION DICTIONARY ─────────────────────────────────────────────
+const T = {
+  ar:{
+    nav_skills:'المهارات',nav_projects:'المشاريع',nav_services:'الخدمات',nav_contact:'تواصل',
+    logo:'أسامة',available:'متاح للعمل الآن',
+    h1_line1:'مطوّر',h1_line2:'من غزة، فلسطين 🇵🇸',
+    hero_sub:'أبني تطبيقات ويب حديثة وقابلة للتوسع — من الواجهة الأمامية حتى قاعدة البيانات. أعمل ضمن فريق متكامل يضمن تسليم منتج عالي الجودة في الوقت المحدد.',
+    btn_work:'اكتشف أعمالي',btn_contact:'تواصل معي',
+    card_name:'أسامة أبو جاسر',
+    stat_exp:'سنوات خبرة',stat_proj:'مشروع منجز',stat_sat:'رضا العملاء',stat_pass:'شغف بالكود',
+    eye_skills:'ما أعمل به',title_skills:'المهارات التقنية',
+    sk_front:'الواجهة الأمامية',sk_back:'الخادم والباك اند',sk_db:'قواعد البيانات والأدوات',sk_meth:'منهجيات العمل',
+    eye_proj:'الأعمال',title_proj:'المشاريع المنجزة',
+    p1n:'منصة تجارة إلكترونية',
+    p1d:'متجر إلكتروني متكامل يشمل إدارة المنتجات، سلة التسوق، تتبع الطلبات، ولوحة تحكم للمشرف مع نظام مصادقة آمن وتكامل مع بوابة الدفع.',
+    p2n:'نظام إدارة المهام',
+    p2d:'تطبيق إنتاجية للفرق يتيح تعيين المهام في الوقت الفعلي، تتبع التقدم، التحكم في الصلاحيات، ولوحة تقارير لمديري الفريق.',
+    p3n:'بوابة إدارة مدرسية',
+    p3d:'نظام إداري شامل يغطي سجلات الطلاب، الحضور والغياب، الدرجات، والتواصل مع أولياء الأمور — مصمم ليكون سهل الاستخدام.',
+    eye_svc:'ما أقدمه',title_svc:'الخدمات',
+    svc1:'تطوير تطبيقات ويب متكاملة فول ستاك',svc2:'تصميم وتطوير REST API وربطها',
+    svc3:'واجهات مستخدم متجاوبة وملائمة للجوال',svc4:'تصميم قواعد البيانات وتحسينها',
+    svc5:'المتاجر الإلكترونية وأنظمة الدفع',svc6:'لوحات التحكم وأنظمة CMS',
+    ct_title:'هل لديك مشروع في ذهنك؟',
+    ct_sub:'أنا وفريقي جاهزون للبدء. نغطي دورة المشروع كاملاً — من التصميم حتى النشر — ونسلّم منتجاً متكاملاً بكفاءة وجودة عالية.',
+    location:'غزة، فلسطين 🇵🇸',
+    footer:'صُنع بـ ♥ في غزة، فلسطين · أسامة أبو جاسر © 2025'
+  },
+  en:{
+    nav_skills:'Skills',nav_projects:'Projects',nav_services:'Services',nav_contact:'Contact',
+    logo:'Osama',available:'Available for work',
+    h1_line1:'Full Stack',h1_line2:'Developer · Gaza, Palestine 🇵🇸',
+    hero_sub:'I build modern, scalable web applications — from the frontend to the database. I work within a solid team that ensures high-quality delivery, on time and on spec.',
+    btn_work:'View My Work',btn_contact:'Get in Touch',
+    card_name:'Osama Abu Jasser',
+    stat_exp:'Years Exp.',stat_proj:'Projects Done',stat_sat:'Client Sat.',stat_pass:'Code Passion',
+    eye_skills:'Tech Stack',title_skills:'Technical Skills',
+    sk_front:'Frontend',sk_back:'Backend',sk_db:'Database & Tools',sk_meth:'Methodologies',
+    eye_proj:'Work',title_proj:'Featured Projects',
+    p1n:'E-Commerce Platform',
+    p1d:'Full-featured online store with product management, shopping cart, order tracking, and an admin dashboard — with secure authentication and payment gateway integration.',
+    p2n:'Task Management System',
+    p2d:'A team productivity app with real-time task assignment, progress tracking, permission control, and a reporting dashboard for team managers.',
+    p3n:'School Management Portal',
+    p3d:'A comprehensive school admin system covering student records, attendance, grades, and parent communication — designed for ease of use.',
+    eye_svc:'What I Offer',title_svc:'Services',
+    svc1:'Full Stack web application development',svc2:'REST API design, development & integration',
+    svc3:'Responsive & mobile-friendly UI',svc4:'Database design & optimization',
+    svc5:'E-commerce & payment systems',svc6:'Dashboards & CMS systems',
+    ct_title:'Got a project in mind?',
+    ct_sub:'My team and I are ready to start. We cover the full project lifecycle — from design to deployment — and deliver a polished product efficiently and at high quality.',
+    location:'Gaza, Palestine 🇵🇸',
+    footer:'Made with ♥ in Gaza, Palestine · Osama Abu Jasser © 2025'
+  }
+};
+
+// ── TOGGLE ─────────────────────────────────────────────────────────────
+let lang = 'ar';
+
+function toggleLang(){
+  lang = lang === 'ar' ? 'en' : 'ar';
+  const html = document.getElementById('html-root');
+
+  // direction + language attribute
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+
+  // lang button label
+  document.getElementById('lang-btn').textContent = lang === 'ar' ? 'EN' : 'ع';
+
+  // logo
+  document.getElementById('logo-name').textContent = T[lang].logo;
+
+  // h1 special: line1 is before the <span class="accent">, line2 is .sub-h
+  document.getElementById('h1-line1').textContent = T[lang].h1_line1;
+
+  // all other data-key elements (skip h1_line1 since handled above)
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.getAttribute('data-key');
+    if(k === 'h1_line1') return;
+    if(T[lang][k] !== undefined) el.textContent = T[lang][k];
+  });
+}
+
+// ── SCROLL REVEAL ──────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}
+  });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// hero fires at load
+setTimeout(()=>{
+  document.querySelectorAll('.hero .reveal').forEach((el,i)=>
+    setTimeout(()=>el.classList.add('visible'),i*110));
+},80);
+</script>
+</body>
+</html>
